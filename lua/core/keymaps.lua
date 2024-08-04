@@ -11,37 +11,15 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 
--- ============================== Easy Life ==============================
 --
-map("n", "<leader><leader>", "<cmd>so<cr>", { desc = ":so" })
-map({ 'v', 'x', 'n' }, "x", '"_x', { desc = "Stop copying to clipboard" })
-map({ 'v', 'x', 'n' }, "X", '"_X', { desc = "Stop copying to clipboard" })
-map({ 'v', 'x', 'n' }, "c", '"_c', { desc = "Stop copying to clipboard" })
-map({ 'v', 'x', 'n' }, "C", '"_C', { desc = "Stop copying to clipboard" })
-map("n", "<C-a>", "ggVG", { desc = "Clear search highlights" })
--- map("n", "<C-w>", "<cmd>:q!<CR>", { desc = "Close buffer" })
-map({ 'v', 'x' }, "y", 'y`]', { desc = "Yank text but the cursor back on the last line not first" })
--- map({ 'v', 'x' }, 'p', 'pgv`]', opts)
+-- // ================================================================================ 
+-- // ============================= # Window Management # ============================ 
+-- // ================================================================================ 
 
-map('i', 'jj', '<Esc>', opts)
-map('i', 'kk', '<Esc>', opts)
-
-map("n", "n", "nzzzv", { desc = "Find next but still stay in the middle" })
-map("n", "N", "Nzzzv", { desc = "Find prev but still stay in the middle" })
-map("n", "<A-z>", "<cmd>set wrap!<CR>", { desc = "Toggle Word Wrap" })
-map("v", "<C-c>", "y", { desc = "Copy text" })
-map("n", "<C-c>", 'yy', { desc = "Copy text" })
-
-map("n", "<leader>yy", '<cmd>%y+<cr>', { desc = "Copy full file" })
-map("n", "<leader>yp", '<cmd>CApath<cr>', { desc = "Copy Absolute Path" })
-map("n", "<leader>yP", '<cmd>CRpath<cr>', { desc = "Copy Relative Path" })
-
--- ============================== Window Management ==============================
 map("n", "<leader>q", "<cmd>x<cr>", { desc = "Quit and save" })
 map("n", "<leader>Q", "<cmd>qa!<cr>", { desc = "Force quit and dont save" })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>x", "<cmd>q<cr>", { desc = "Quit, don`t save" })
-
 
 map("n", "<leader>ss", "<cmd>vsplit<cr>", { desc = "Vertical Split File" })
 map("n", "<leader>sv", "<cmd>vsplit<cr>", { desc = "Vertical Split File" })
@@ -53,7 +31,6 @@ map("n", "<C-h>", "<C-w>h", { desc = "Move Left" })
 map("n", "<C-j>", "<C-w>j", { desc = "Move Down" })
 map("n", "<C-k>", "<C-w>k", { desc = "Move Up" })
 map("n", "<C-l>", "<C-w>l", { desc = "Move Right" })
-
 
 map("n", "<C-A-Up>", "<cmd>resize +10<cr>", { desc = "Increase window height" })
 map("n", "<C-A-Down>", "<cmd>resize -10<cr>", { desc = "Decrease window height" })
@@ -67,6 +44,95 @@ map("n", "J", "<cmd>tabnext<cr>", { desc = "Next working space" })
 map("n", "K", "<cmd>tabprevious<cr>", { desc = "Next working space" })
 map("n", "<s-j>", "<cmd>tabnext<cr>", { desc = "goto prev buffer" })
 map("n", "<s-k>", "<cmd>tabprevious<cr>", { desc = "goto next buffer" })
+
+
+-- //  ================================================================================
+-- // ============================= # EDITING # =======================================
+-- // ================================================================================ 
+
+-- Duplicate line or block
+map('n', '<C-A-j>', '"ayy"ap', opts)
+map('v', '<C-A-j>', "yPgv", opts)
+
+map('n', '<leader>d', "cc<ESC>", opts)
+map('n', '<leader>D', "ggdG", opts)
+map({ 'v', 'x' }, '<leader>d',[[:s/\%V.*//<CR>]], opts)
+
+--Moving Lines
+map('n', '<A-j>', ":m .+1<CR>==", opts)
+map('n', '<A-k>', ":m .-2<CR>==", opts)
+map('i', '<A-k>', "<Esc>:m .-2<CR>==gi", opts)
+map('i', '<A-j>', "<Esc>:m .+1<CR>==gi", opts)
+map({ 'v', 'x' }, '<A-j>', ":move '>+1<CR>gv=gv", opts)
+map({ 'v', 'x' }, '<A-k>', ":move '<-2<CR>gv=gv", opts)
+map('n', '<A-Down>', ":m .+1<CR>==", opts)
+map('n', '<A-Up>', ":m .-2<CR>==", opts)
+map('i', '<A-Down>', "<Esc>:m .+1<CR>==gi", opts)
+map('i', '<A-Up>', "<Esc>:m .-2<CR>==gi", opts)
+map({ 'v', 'x' }, '<A-Down>', ":move '>+1<CR>gv=gv", opts)
+map({ 'v', 'x' }, '<A-Up>', ":move '<-2<CR>gv=gv", opts)
+
+
+map("n", "<Enter>", "o<ESC>", { desc = "Create new line in normal/insert mode" })
+
+
+map("n", "gJ", ":s/ \\([a-zA-Z0-9]\\)/\\r\\1/g<CR>:noh<CR>")
+
+map("n", "Q", "@q")
+map("x", "Q", ":norm @q<CR>")
+-- map('n', '<C-A-k>', '"ayy"aP', opts)
+-- map('v', '<C-A-k>', "yPgv", opts)
+-- map('n', '<C-A-j>', "yyp", opts)
+--
+--
+------------------- INSERTS ---------------------
+---
+map("n", "<Leader>i1", "i<C-O>40i=<ESC>i<Space><Space><C-O>40i=<Esc>b<Left>", { desc = "Insert line of 40 ====" })
+map("n", "<Leader>i2", "i<C-O>30i=<ESC>i<Space><Space><C-O>30i=<Esc>b<Left>", { desc = "Insert line of 30 ====" })
+map("n", "<Leader>i3", "i<C-O>20i=<ESC>i<Space><Space><C-O>20i=<Esc>b<Left>", { desc = "Insert line of 20 ====" })
+map("n", "<Leader>i4", "i<C-O>10i=<ESC>i<Space><Space><C-O>10i=<Esc>b<Left>", { desc = "Insert line of 10 ====" })
+
+map("n", "<Leader>il1", "i<C-O>40i-<ESC>i<Space><Space><C-O>40i-<Esc>b<Left>", { desc = "Insert line of 40 ====" })
+map("n", "<Leader>il2", "i<C-O>30i-<ESC>i<Space><Space><C-O>30i-<Esc>b<Left>", { desc = "Insert line of 30 ====" })
+map("n", "<Leader>il3", "i<C-O>20i-<ESC>i<Space><Space><C-O>20i-<Esc>b<Left>", { desc = "Insert line of 20 ====" })
+map("n", "<Leader>il4", "i<C-O>10i-<ESC>i<Space><Space><C-O>10i-<Esc>b<Left>", { desc = "Insert line of 10 ====" })
+
+map("n", "<Leader>ih1", "i//<Space><Space><C-O>80i-<ESC>o<ESC>o<ESC>i//<Space><Space><C-O>80i-<ESC>ki//<Space><Space><C-O>30i-<ESC>i<Space>#<Space> # <C-O>30i-<Esc>3ba<Right>", { desc = "Insert Header -" })
+map("n", "<Leader>ih2", "i//<Space><Space><C-O>80i*<ESC>o<ESC>o<ESC>i//<Space><Space><C-O>80i*<ESC>ki//<Space><Space><C-O>30i=<ESC>i<Space>#<Space> # <C-O>30i=<Esc>3ba<Right>", { desc = "Insert Header *" })
+map("n", "<Leader>ih3", "i//<Space><Space><C-O>80i=<ESC>o<ESC>o<ESC>i//<Space><Space><C-O>80i=<ESC>ki//<Space><Space><C-O>30i=<ESC>i<Space>#<Space> # <C-O>30i=<Esc>3ba<Right>", { desc = "Insert Header +" })
+
+
+
+-- // ================================================================================ 
+-- // ============================= # Improvements # =============================== 
+-- // ================================================================================ 
+
+map("n", "<leader><leader>", "<cmd>so<cr>", { desc = ":so" })
+map('i', 'jj', '<Esc>', opts)
+map('i', 'kk', '<Esc>', opts)
+map("n", "n", "nzzzv", { desc = "Find next but still stay in the middle" })
+map("n", "N", "Nzzzv", { desc = "Find prev but still stay in the middle" })
+
+
+map({ 'v', 'x', 'n' }, "x", '"_x', { desc = "Stop copying to clipboard" })
+map({ 'v', 'x', 'n' }, "X", '"_X', { desc = "Stop copying to clipboard" })
+map({ 'v', 'x', 'n' }, "c", '"_c', { desc = "Stop copying to clipboard" })
+map({ 'v', 'x', 'n' }, "C", '"_C', { desc = "Stop copying to clipboard" })
+map({ 'v', 'x' }, "y", 'y`]', { desc = "Yank text but the cursor back on the last line not first" })
+
+-- map("n", "<C-w>", "<cmd>:q!<CR>", { desc = "Close buffer" })
+-- map({ 'v', 'x' }, 'p', 'pgv`]', opts)
+
+
+map("n", "<C-a>", "ggVG", { desc = "Clear search highlights" })
+map("n", "<A-z>", "<cmd>set wrap!<CR>", { desc = "Toggle Word Wrap" })
+map("v", "<C-c>", "y", { desc = "Copy text" })
+map("n", "<C-c>", 'yy', { desc = "Copy text" })
+
+map("n", "<leader>yy", '<cmd>%y+<cr>', { desc = "Copy full file" })
+map("n", "<leader>yp", '<cmd>CApath<cr>', { desc = "Copy Absolute Path" })
+map("n", "<leader>yP", '<cmd>CRpath<cr>', { desc = "Copy Relative Path" })
+
 -- ============================== Navigation Keymaps ==============================
 
 map("n", "gh", "H", { desc = "go High" })
@@ -98,48 +164,6 @@ map("i", "<C-A-k>", "<Esc>A", { desc = "goto end of line in Insert mode" })
 
 
 -- ============================== Editing Keymaps ==============================
-
-
--- Duplicate line or block
--- map('n', '<C-A-j>', "yyp", opts)
-map('n', '<C-A-j>', '"ayy"ap', opts)
-map('n', '<C-A-k>', '"ayy"aP', opts)
-map('v', '<C-A-j>', "yPgv", opts)
-map('v', '<C-A-k>', "yPgv", opts)
-
-map('n', '<leader>d', "cc<ESC>", opts)
-map('n', '<leader>D', "ggdG", opts)
-
-map('n', '<A-j>', ":m .+1<CR>==", opts)
-map('n', '<A-k>', ":m .-2<CR>==", opts)
-map('i', '<A-k>', "<Esc>:m .-2<CR>==gi", opts)
-map('i', '<A-j>', "<Esc>:m .+1<CR>==gi", opts)
-map({ 'v', 'x' }, '<A-j>', ":move '>+1<CR>gv=gv", opts)
-map({ 'v', 'x' }, '<A-k>', ":move '<-2<CR>gv=gv", opts)
-
-map('n', '<A-Down>', ":m .+1<CR>==", opts)
-map('n', '<A-Up>', ":m .-2<CR>==", opts)
-map('i', '<A-Down>', "<Esc>:m .+1<CR>==gi", opts)
-map('i', '<A-Up>', "<Esc>:m .-2<CR>==gi", opts)
-map({ 'v', 'x' }, '<A-Down>', ":move '>+1<CR>gv=gv", opts)
-map({ 'v', 'x' }, '<A-Up>', ":move '<-2<CR>gv=gv", opts)
-
-
-map("n", "<Enter>", "o<ESC>", { desc = "Create new line in normal/insert mode" })
-
-map("n", "<Leader>i1", "i<C-O>40i=<ESC>i<Space><Space><C-O>40i=<Esc>b<Left>",
-    { desc = "Insert line of ====" })
-map("n", "<Leader>i2", "i<C-O>30i=<ESC>i<Space><Space><C-O>30i=<Esc>b<Left>",
-    { desc = "Insert line of ====" })
-map("n", "<Leader>i3", "i<C-O>20i=<ESC>i<Space><Space><C-O>20i=<Esc>b<Left>",
-    { desc = "Insert line of ====" })
-map("n", "<Leader>i4", "i<C-O>10i=<ESC>i<Space><Space><C-O>10i=<Esc>b<Left>",
-    { desc = "Insert line of ====" })
-
-map("n", "gJ", ":s/ \\([a-zA-Z0-9]\\)/\\r\\1/g<CR>:noh<CR>")
-
-map("n", "Q", "@q")
-map("x", "Q", ":norm @q<CR>")
 -- ============================== Other ==============================
 
 -- map("n", "<C-Enter>", "o<ESC>", { desc = "Create new line in normal/insert mode" }) --Dont work
