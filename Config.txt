@@ -1,0 +1,36 @@
+Inspiration: #From nvim 2k
+https://github.com/2KAbhishek/nvim2k
+https://github.com/josean-dev/dev-environment-files
+https://github.com/exosyphon/nvim
+https://github.com/elijahmanor/dotfiles -- maybe investigate
+
+Terminal config:
+Search : NerdFont git, on the right there will be releases
+
+ColorScheme: Cambell
+Font face: JetBrainsMonoNL Nerd Font mono
+
+-- What to install prior to NVIM run:
+$ choco install mingw
+$ choco install make
+$ choco install ripgrep
+$ choco install fzf
+$ choco install fd
+
+
+--OH-MY-POSH
+Install-Module PsReadLine -Force
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+
+
+
+info:^M see the article
+https://stackoverflow.com/questions/1505978/how-do-i-hide-the-eol-doc-chars-m-in-vim
+We got a keymapping
+
+
+
+
+
+
+
