@@ -1,4 +1,4 @@
-local function map(mode, lhs, rhs, opts)
+function map(mode, lhs, rhs, opts)
     opts = opts or {}
     opts.silent = opts.silent ~= false
     vim.keymap.set(mode, lhs, rhs, opts)
@@ -199,6 +199,9 @@ map('n', '<leader>cl', '<cmd>ToggleList<CR>', { desc = "toggle list" })
 map("n", "<leader>mm", "<cmd>MaximizerToggle<CR>", { desc = "Toggle current window in full view" })
 
 
+map("n", "<Leader>1", [[:colorscheme ayu-mirage<CR>]], { desc = "Colorscheme 1" })
+map("n", "<Leader>2", [[:colorscheme xcodedarkhc <CR>]], { desc = "Colorscheme 2" })
+map("n", "<Leader>3", [[:colorscheme tokyonight-moon<CR>]], { desc = "Colorscheme 3" })
 
 --:%s/\r//g                   : Dellete DOS returns ^M
 --

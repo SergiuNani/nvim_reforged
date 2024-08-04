@@ -6,8 +6,8 @@ https://github.com/elijahmanor/dotfiles -- maybe investigate
 
 Terminal config:
 Search : NerdFont git, on the right there will be releases
-
 ColorScheme: Cambell
+
 Font face: JetBrainsMonoNL Nerd Font mono
 
 -- What to install prior to NVIM run:

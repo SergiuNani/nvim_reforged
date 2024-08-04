@@ -1,4 +1,7 @@
+print("Hello")
+
 require('onedark').setup {
+
     style = 'warmer',
     --warmer, dark, darker
 }
@@ -39,8 +42,9 @@ require("tokyonight").setup({
     end
 })
 
-require("tokyonight").setup({})
--- vim.cmd([[colorscheme tokyonight]])
+-- require("tokyonight").setup({})
+-- vim.cmd([[colorscheme ayu-mirage]]) --6/10
+vim.cmd([[colorscheme tokyonight]])
 -- vim.cmd([[colorscheme onedark-vivid]]) -- 7/10 a lot of red ehh
 -- vim.cmd([[colorscheme nightfly]]) --ehhh
 -- vim.cmd([[colorscheme tokyonight]]) --ehhh
@@ -48,12 +52,12 @@ require("tokyonight").setup({})
 -- vim.cmd([[colorscheme bamboo]]) --6/10
 -- vim.cmd([[colorscheme rose-pine]]) --6/10
 -- vim.cmd([[colorscheme gruvbox]]) --6/10
-vim.cmd([[colorscheme ayu-mirage]]) --6/10
 -- vim.cmd([[colorscheme xcodedarkhc]]) --6/10
 
 
 
-local function map(mode, lhs, rhs, opts)
+
+function map(mode, lhs, rhs, opts)
     opts = opts or {}
     opts.silent = opts.silent ~= false
     vim.keymap.set(mode, lhs, rhs, opts)
@@ -61,7 +65,7 @@ end
 local opts = { noremap = true, silent = true }
 
 
-map("n", "<Leader>1", [[:colorscheme ayu-mirage<CR>]], { desc = "Colorscheme 1" })
+map("n", "<Leader>0", [[:colorscheme ayu-mirage<CR>]], { desc = "Colorscheme 1" })
 map("n", "<Leader>2", [[:colorscheme xcodedarkhc <CR>]], { desc = "Colorscheme 2" })
 map("n", "<Leader>3", [[:colorscheme tokyonight-moon<CR>]], { desc = "Colorscheme 3" })
 

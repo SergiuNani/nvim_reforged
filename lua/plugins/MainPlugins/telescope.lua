@@ -17,6 +17,9 @@ local function Teli_cmd(func_name, Ttype)
         Ttype)
 end
 
+function TelescopeFindConfigFiles()
+    require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+end
 
 telescope.setup({
     defaults = {
@@ -185,6 +188,7 @@ map("n", "<leader>fh", Teli_cmd("help_tags", "get_dropdown"), { desc = "Serch in
 map("n", "<leader>fq", Teli_cmd("quickfix", "get_dropdown"), { desc = "Serch in HELP" })
 -- map("n","<leader>fk",Teli_cmd("commands", "get_dropdown"),{ desc = "Telescope Commands" }),
 -- map("n", "<leader>ft", Teli_cmd("builtin", "get_dropdown"), { desc = "[F]ind [Q]select Telescope" }),
+map("n", "<leader>`", [[:colorscheme ayu-light<CR>]], { desc = "Serch in HELP" })
 --
 
 require('telescope').load_extension('fzf')
